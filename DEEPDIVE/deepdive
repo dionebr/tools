@@ -1,0 +1,122 @@
+#!/bin/bash
+# deepdive - Automated Pentest Environment Setup
+# Creates organized folder structure for CTF/pentest challenges
+
+echo "DEEPDIVE - Pentest Environment Setup"
+echo "===================================="
+
+# Get challenge name
+read -p "[-] Enter challenge name: " challenge_name
+
+if [[ -z "$challenge_name" ]]; then
+    echo "[!] Error: Challenge name cannot be empty"
+    exit 1
+fi
+
+# Select platform
+echo ""
+echo "[+] Select platform:"
+echo "   1) HackTheBox (HTB)"
+echo "   2) TryHackMe (THM)" 
+echo "   3) VulnHub"
+echo "   4) Other"
+read -p "[-] Enter choice [1-4]: " platform_choice
+
+case $platform_choice in
+    1) platform="HTB" ;;
+    2) platform="TryHackMe" ;;
+    3) platform="VulnHub" ;;
+    4) read -p "[-] Enter custom platform name: " platform ;;
+    *) echo "[!] Invalid selection"; exit 1 ;;
+esac
+
+# Create main structure
+echo ""
+echo "[+] Creating structure for: $challenge_name ($platform)"
+
+if [[ -d "$challenge_name" ]]; then
+    echo "[!] Warning: Directory '$challenge_name' already exists"
+    read -p "[-] Overwrite? (y/N): " overwrite
+    [[ $overwrite != "y" ]] && exit 0
+fi
+
+mkdir -p "$challenge_name"
+cd "$challenge_name"
+
+# Create standard folders
+folders=("nmap" "content" "scripts" "exploits" "logs" "screenshots")
+for folder in "${folders[@]}"; do
+    mkdir -p "$folder"
+    echo "    Created: $folder/"
+done
+
+# Create basic notes file
+cat > NOTES.md << EOF
+# $challenge_name - $platform
+
+## Target Information
+- **IP**: 
+- **OS**: 
+- **Points**: 
+- **Difficulty**: 
+
+## Reconnaissance
+### Nmap Scans
+\`\`\`bash
+# Quick TCP scan
+nmap -sC -sV -oA nmap/quick-tcp
+
+# Full port scan  
+nmap -p- -oA nmap/full-ports
+
+# UDP scan (if needed)
+nmap -sU -oA nmap/udp-scan
+\`\`\`
+
+## Findings
+### Open Ports
+- 
+
+### Services
+- 
+
+## Exploitation
+### Initial Access
+- 
+
+### Privilege Escalation
+- 
+
+## Notes
+- 
+
+EOF
+
+echo "[+] Created: NOTES.md"
+
+# Create quick access script
+cat > start.sh << 'EOF'
+#!/bin/bash
+# Quick navigation script
+
+echo "Starting pentest environment"
+echo "Available folders:"
+ls -la
+
+echo ""
+echo "Quick commands:"
+echo "   cd nmap/          - Scan results"
+echo "   cd content/       - Downloaded files"
+echo "   cd scripts/       - Custom scripts"
+echo "   cd exploits/      - Exploitation tools"
+echo "   vim NOTES.md      - Edit notes"
+
+EOF
+
+chmod +x start.sh
+
+echo ""
+echo "Setup completed!"
+echo "Location: $(pwd)"
+echo "Run './start.sh' for quick navigation"
+echo "Happy hacking!"
