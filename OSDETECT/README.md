@@ -12,6 +12,13 @@ OS Detection via TTL Analysis
 
 ## Usage
 
+### Global Installation
+```bash
+# After running sudo ./install.sh from main directory
+osdetect 192.168.1.1
+```
+
+### Local Usage
 ```bash
 # Make executable
 chmod +x osdetect

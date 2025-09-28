@@ -13,6 +13,13 @@ Intelligent Port Extractor optimized for nmap grepable output analysis
 
 ## Usage
 
+### Global Installation
+```bash
+# After running sudo ./install.sh from main directory
+stp nmap_scan.txt
+```
+
+### Local Usage
 ```bash
 # Make executable
 chmod +x stp.sh

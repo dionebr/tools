@@ -13,6 +13,13 @@ Automated Pentest Environment Setup - Creates organized folder structure for CTF
 
 ## Usage
 
+### Global Installation
+```bash
+# After running sudo ./install.sh from main directory
+deepdive
+```
+
+### Local Usage
 ```bash
 # Make executable
 chmod +x deepdive
