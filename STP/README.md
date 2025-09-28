@@ -7,8 +7,10 @@ Intelligent Port Extractor optimized for nmap grepable output analysis
 - Robust validation - Verifies nmap format and data integrity
 - Efficient extraction - Optimized processing with awk, grep and cut  
 - Multi-platform - Support for xclip (Linux) and pbcopy (macOS)
-- Clean output - Professional formatting and easy to read
-- Error handling - Clear messages for different scenarios
+- Clean output - Color-coded professional formatting
+- Progress feedback - Real-time status updates during extraction
+- Port counting - Shows total number of open ports found
+- Error handling - Clear colored messages for different scenarios
 - Performance - Fast processing even on large files
 
 ## Usage
@@ -41,11 +43,15 @@ nmap -oG target_scan.txt 192.168.1.100
 ## Example output
 
 ```text
+[*] Extracting information...
+[+] IP Address: 192.168.1.100
+[+] Open ports: 4
+
 === SCAN TO PORTS RESULTS ===
 Target:    192.168.1.100
 Ports:     22,80,443,8080
 =============================
-[+] Port list copied to clipboard
+[+] Ports copied to clipboard
 ```
 
 ## Requirements
