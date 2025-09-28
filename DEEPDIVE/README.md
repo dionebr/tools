@@ -40,15 +40,18 @@ chmod +x deepdive
 ## Folder structure created
 
 ```
-ChallengeName/
-├── nmap/           # Scan results and reconnaissance
-├── content/        # Downloaded files and web content
-├── scripts/        # Custom scripts and tools
-├── exploits/       # Exploits and payloads
-├── logs/           # Activity logs and command history
-├── screenshots/    # Evidence and documentation
-├── NOTES.md        # Organized notes with templates
-└── start.sh        # Quick navigation helper
+Platform/
+└── ChallengeName/
+    ├── nmap/           # Scan results and reconnaissance
+    ├── content/        # Downloaded files and web content
+    ├── scripts/        # Custom scripts and tools
+    ├── exploits/       # Exploits and payloads
+    ├── logs/           # Activity logs and command history
+    ├── screenshots/    # Evidence and documentation
+    ├── evidence/       # Additional evidence files
+    ├── NOTES.md        # Organized notes with templates
+    ├── start.sh        # Quick navigation helper
+    └── back.sh         # Return to platform directory
 ```
 
 ## Requirements
@@ -59,25 +62,34 @@ ChallengeName/
 ## Features
 
 ### Interactive Setup
-- Prompts for challenge name and platform
-- Platform selection (HTB, TryHackMe, VulnHub, Custom)
-- Validation and error handling
+- Platform selection first (HTB, TryHackMe, VulnHub, Custom)
+- Creates platform directory structure automatically
+- Prompts for challenge name with validation
+- Prevents duplicate challenges within platforms
 
 ### Organized Structure
+- Hierarchical organization (Platform/Challenge/)
 - Standardized folders for different pentest phases
-- Pre-configured notes template with common nmap commands
-- Quick access navigation script
+- Enhanced notes template with date and flags section
+- Navigation scripts (start.sh and back.sh)
 
 ### Safety Features
-- Checks for existing directories
-- Confirms before overwriting
+- Checks for existing directories within platforms
+- Confirms before overwriting existing challenges
 - Clear feedback during setup process
+- Automatic date tracking in notes
 
 ## Notes Template
 
 The generated NOTES.md includes sections for:
-- Target information (IP, OS, difficulty)
-- Reconnaissance commands and results
+- Target information (IP, OS, difficulty, start date)
+- Reconnaissance commands with optimized nmap scans
 - Open ports and services documentation
 - Exploitation steps and findings
 - Privilege escalation notes
+- Dedicated flags section (User/Root)
+
+## Navigation Scripts
+
+- **start.sh** - Quick overview and navigation commands
+- **back.sh** - Return to platform root directory for easy switching between challenges
